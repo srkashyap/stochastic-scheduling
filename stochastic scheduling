@@ -1,155 +1,69 @@
-{
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": 2,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "import numpy as np\n",
-    "import pandas as pd"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 3,
-   "metadata": {},
-   "outputs": [
-    {
-     "data": {
-      "text/plain": [
-       "(2093, 6)"
-      ]
-     },
-     "execution_count": 3,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "data = np.asarray(pd.read_csv(r\"Activity_data.csv\",header=0),dtype=int)\n",
-    "datas = data[:,1:]\n",
-    "datas.shape"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 4,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "mat5 = []\n",
-    "n = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,18,50}\n",
-    "matx = np.zeros((19,19))\n",
-    "\n",
-    "for a,j in enumerate(n,1):\n",
-    "    k = np.where(datas[:,0]==j,datas[:,1],0)\n",
-    "    for b,i in enumerate(n,1):                   \n",
-    "        p = list(k).count(i)\n",
-    "        if list(datas[:,0]).count(j)==0:\n",
-    "            matx[a][b] =0\n",
-    "        else:\n",
-    "            matx[a][b] = p/list(datas[:,0]).count(j)\n",
-    "        \n",
-    "maty = matx[1:,1:]"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 203,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "mat6 = []\n",
-    "mat910 = np.zeros((19,19))\n",
-    "n = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,18,50}\n",
-    "for a,j in enumerate(n,1):\n",
-    "    k = np.where(datas[:,1]==j,datas[:,2],0)\n",
-    "    for b,i in enumerate(n,1):                   \n",
-    "        p = list(k).count(i)\n",
-    "        if list(datas[:,1]).count(j)==0:\n",
-    "            mat910[a][b] =0\n",
-    "        else:\n",
-    "            mat910[a][b] = p/list(datas[:,1]).count(j)\n",
-    "        \n",
-    "matz = mat910[1:,1:]\n"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 204,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "\n",
-    "mat1011 = np.zeros((19,19))\n",
-    "n = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,18,50}\n",
-    "for a,j in enumerate(n,1):\n",
-    "    k = np.where(datas[:,2]==j,datas[:,3],0)\n",
-    "    for b,i in enumerate(n,1):                   \n",
-    "        p = list(k).count(i)\n",
-    "        if list(datas[:,2]).count(j)==0:\n",
-    "            mat1011[a][b] =0\n",
-    "        else:\n",
-    "            mat1011[a][b] = p/list(datas[:,2]).count(j)\n",
-    "        \n",
-    "mata = mat1011[1:,1:]"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 207,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "np.savetxt(\"mat3.csv\",matz,delimiter=',')"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 208,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "np.savetxt(\"mat2.csv\",maty,delimiter=',')"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 209,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "np.savetxt(\"mat4.csv\",mata,delimiter=',')"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": []
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.7.1"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 2
-}
+
+# coding: utf-8
+import numpy as np
+import pandas as pd
+
+
+data = np.asarray(pd.read_csv(r"Activity_data.csv",header=0),dtype=int)
+datas = data[:,1:]
+datas.shape
+
+
+mat5 = []
+n = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,18,50}
+matx = np.zeros((19,19))
+
+for a,j in enumerate(n,1):
+    k = np.where(datas[:,0]==j,datas[:,1],0)
+    for b,i in enumerate(n,1):                   
+        p = list(k).count(i)
+        if list(datas[:,0]).count(j)==0:
+            matx[a][b] =0
+        else:
+            matx[a][b] = p/list(datas[:,0]).count(j)
+        
+maty = matx[1:,1:]
+
+
+
+mat6 = []
+mat910 = np.zeros((19,19))
+n = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,18,50}
+for a,j in enumerate(n,1):
+    k = np.where(datas[:,1]==j,datas[:,2],0)
+    for b,i in enumerate(n,1):                   
+        p = list(k).count(i)
+        if list(datas[:,1]).count(j)==0:
+            mat910[a][b] =0
+        else:
+            mat910[a][b] = p/list(datas[:,1]).count(j)
+        
+matz = mat910[1:,1:]
+
+
+# In[204]:
+
+
+
+mat1011 = np.zeros((19,19))
+n = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,18,50}
+for a,j in enumerate(n,1):
+    k = np.where(datas[:,2]==j,datas[:,3],0)
+    for b,i in enumerate(n,1):                   
+        p = list(k).count(i)
+        if list(datas[:,2]).count(j)==0:
+            mat1011[a][b] =0
+        else:
+            mat1011[a][b] = p/list(datas[:,2]).count(j)
+        
+mata = mat1011[1:,1:]
+
+
+
+np.savetxt("mat3.csv",matz,delimiter=',')
+
+
+np.savetxt("mat2.csv",maty,delimiter=',')
+
+
+np.savetxt("mat4.csv",mata,delimiter=',')
